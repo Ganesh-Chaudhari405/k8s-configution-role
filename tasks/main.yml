@@ -11,7 +11,6 @@
    gpgkey: 
    - https://packages.cloud.google.com/yum/doc/yum-key.gpg 
    - https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
-
 - name: "installation of kubeadm,docker engine and iproute-tc"
   package:
    name: 
@@ -31,11 +30,9 @@
        name: docker
        state: started
        enabled: true
-
 - name: "setting call-iptables to 1"
   shell: "echo 1 > /proc/sys/net/bridge/bridge-nf-call-iptables"   
   changed_when: false  
-            
 - name: "starting and enabling kubelete service"
   service:
       name: kubelet
@@ -48,4 +45,3 @@
    dest: /cred.sh 
 - name: "joining slave node to master node"
   command: "bash /cred.sh"  
-
